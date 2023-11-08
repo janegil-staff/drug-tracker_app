@@ -4,7 +4,7 @@ async function authenticate(mode, email, password) {
   let data = JSON.stringify({
     email: email,
     password: password,
-    returnSecureToken: true
+    returnSecureToken: true,
   });
 
   let url = `http://localhost:8080/api/users/${mode}`;
@@ -13,13 +13,15 @@ async function authenticate(mode, email, password) {
       "Content-Type": "application/json",
     },
   });
-  console.log(response.data);
-;}
 
-export async function createUser(email, password) {
-  await authenticate('signup', email, password)
+  const token = response.data.token;
+  return token;
 }
 
-export async function login(email, password) {
-  await authenticate('login', email, password);
+export function createUser(email, password) {
+  authenticate("signup", email, password);
+}
+
+export function login(email, password) {
+  authenticate("login", email, password);
 }
