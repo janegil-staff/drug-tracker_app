@@ -5,9 +5,12 @@ import { createUser } from "../util/auth";
 function SignupScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   async function signupHandler({email, password}) {
-    setIsAuthenticating(true);
-    await createUser(email, password);
-    setIsAuthenticating(false);
+    try {
+      await createUser(email, password);
+    } catch(err) {
+      Alert.alert('Authentication failed', 
+      'Could not create user. Please check you credential or try again later');
+    }
   }
 
   if(isAuthenticating) {
