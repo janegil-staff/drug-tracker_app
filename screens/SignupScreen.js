@@ -8,12 +8,14 @@ function SignupScreen() {
   
   const authCtx = useContext(AuthContext);
   async function signupHandler({email, password}) {
+    setIsAuthenticating(true);
     try {
       const token = await createUser(email, password);
       authCtx.authenticate(token);
     } catch(err) {
       Alert.alert('Authentication failed', 
       'Could not create user. Please check you credential or try again later');
+      setIsAuthenticating(false);
     }
   }
 
