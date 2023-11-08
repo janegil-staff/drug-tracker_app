@@ -10,6 +10,7 @@ import { Colors } from './constants/styles';
 const Stack = createNativeStackNavigator();
 
 function AuthStack() {
+
   return (
     <Stack.Navigator
       screenOptions={{
