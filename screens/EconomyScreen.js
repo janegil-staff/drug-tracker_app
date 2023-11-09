@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 
-function WelcomeScreen() {
+function EconomyScreen() {
   return (
     <View style={styles.rootContainer}>
-      <Text style={styles.title}>Welcome!</Text>
-      <Text>You authenticated successfully!</Text>
+      <Text style={styles.title}>Ecomomy</Text>
     </View>
   );
 }
 
-export default WelcomeScreen;
+export default EconomyScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {

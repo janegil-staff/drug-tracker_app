@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
-import WelcomeScreen from "./screens/WelcomeScreen";
+import WelcomeScreen from "./screens/EntryListScreen.js";
 import { Colors } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import { useContext, useEffect, useState } from "react";
@@ -12,7 +12,12 @@ import IconButton from "./components/UI/IconButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ImageBackground } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import AddEntryScreen from "./screens/AddEntryScreen";
+import EconomyScreen from "./screens/EconomyScreen";
+import UserProfileScreen from "./screens/UserProfileScreen";
+import EntryListScreen from "./screens/EntryListScreen.js";
+import TimerScreen from "./screens/TimerScreen.js";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -40,19 +45,64 @@ function AuthenticatedStack() {
         headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
         contentStyle: { backgroundColor: Colors.primary100 },
+        headerRight: ({ tintColor }) => (
+          <IconButton
+            icon="exit"
+            color={tintColor}
+            size={24}
+            onPress={authCtx.logout}
+          />
+        ),
       }}
     >
       <BottomTab.Screen
-        name="Welcome"
-        component={WelcomeScreen}
+        name="List"
+        component={EntryListScreen}
         options={{
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
+          tabBarLabel: "List",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="list" color={color} size={size} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Timer"
+        component={TimerScreen}
+        options={{
+          tabBarLabel: "Timer",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="timer" color={color} size={size} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="AddEntry"
+        component={AddEntryScreen}
+        options={{
+          tabBarLabel: "Add Entry",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="add-circle" color={color} size={size} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Economy"
+        component={EconomyScreen}
+        options={{
+          tabBarLabel: "Economy",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="cash" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Profile"
+        component={UserProfileScreen}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" color={color} size={size} />
           ),
         }}
       />

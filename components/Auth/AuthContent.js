@@ -53,7 +53,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
   }
 
   return (
-    <LinearGradient colors={['#263238','#CFD8DC']} style={styles.rootScreen}>
+    <LinearGradient colors={['#1A237E','#C5CAE9']} style={styles.rootScreen}>
       <ImageBackground
         source={require("../../assets/images/pills.avif")}
         style={styles.rootScreen} resizeMode="cover"
@@ -71,10 +71,8 @@ function AuthContent({ isLogin, onAuthenticate }) {
             </FlatButton>
           </View>
         </View>
-      </ImageBackground>
-  
+      </ImageBackground>  
     </LinearGradient>
-
   );
 }
 
