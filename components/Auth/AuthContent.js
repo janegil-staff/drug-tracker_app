@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, ImageBackground, StyleSheet, View } from "react-native";
 
 import FlatButton from "../UI/FlatButton";
 import AuthForm from "./AuthForm";
 import { Colors } from "../../constants/styles";
 import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
 
 function AuthContent({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
@@ -52,18 +53,28 @@ function AuthContent({ isLogin, onAuthenticate }) {
   }
 
   return (
-    <View style={styles.authContent}>
-      <AuthForm
-        isLogin={isLogin}
-        onSubmit={submitHandler}
-        credentialsInvalid={credentialsInvalid}
-      />
-      <View style={styles.buttons}>
-        <FlatButton onPress={switchAuthModeHandler}>
-          {isLogin ? "Create a new user" : "Log in instead"}
-        </FlatButton>
-      </View>
-    </View>
+    <LinearGradient colors={['#263238','#CFD8DC']} style={styles.rootScreen}>
+      <ImageBackground
+        source={require("../../assets/images/pills.avif")}
+        style={styles.rootScreen} resizeMode="cover"
+        imageStyle={styles.backgroundImage}
+      >
+        <View style={styles.authContent}>
+          <AuthForm
+            isLogin={isLogin}
+            onSubmit={submitHandler}
+            credentialsInvalid={credentialsInvalid}
+          />
+          <View style={styles.buttons}>
+            <FlatButton onPress={switchAuthModeHandler}>
+              {isLogin ? "Create a new user" : "Log in instead"}
+            </FlatButton>
+          </View>
+        </View>
+      </ImageBackground>
+  
+    </LinearGradient>
+
   );
 }
 
@@ -85,4 +96,10 @@ const styles = StyleSheet.create({
   buttons: {
     marginTop: 8,
   },
+  rootScreen: {
+    flex: 1
+  },
+  backgroundImage: {
+    opacity: 0.15
+  }
 });

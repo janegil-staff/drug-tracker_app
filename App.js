@@ -11,8 +11,11 @@ import { useContext, useEffect, useState } from "react";
 import IconButton from "./components/UI/IconButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { ImageBackground } from "react-native";
 
 const Stack = createNativeStackNavigator();
+const BottomTab = createBottomTabNavigator();
 
 function AuthStack() {
   return (
@@ -32,14 +35,14 @@ function AuthStack() {
 function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
-    <Stack.Navigator
+    <BottomTab.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
         contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
-      <Stack.Screen
+      <BottomTab.Screen
         name="Welcome"
         component={WelcomeScreen}
         options={{
@@ -53,7 +56,7 @@ function AuthenticatedStack() {
           ),
         }}
       />
-    </Stack.Navigator>
+    </BottomTab.Navigator>
   );
 }
 
@@ -83,16 +86,12 @@ function Root() {
     fetchToken();
   }, []);
 
-  if(isTryingLogin) {
-    return <AppLoading />
+  if (isTryingLogin) {
+    return <AppLoading />;
   }
-  return <Navigation />
+  return <Navigation />;
 }
 export default function App() {
-
-
-
-
   return (
     <>
       <StatusBar style="light" />
