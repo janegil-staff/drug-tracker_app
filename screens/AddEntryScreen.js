@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
+import NewEntry from "../components/Entries/AddEntry/NewEntry";
 
 function AddEntryScreen() {
   return (
-    <View style={styles.rootContainer}>
-      <Text style={styles.title}>Add Entry!</Text>   
-    </View>
+    <NewEntry />
   );
 }
 
