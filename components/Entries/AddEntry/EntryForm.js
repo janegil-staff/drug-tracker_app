@@ -17,8 +17,13 @@ function EntryForm() {
     setEnteredType(data);
   };
 
+  const clearForm = () => {
+    setEnteredAmount('');
+    setEnteredPrice('');
+  }
+
   const isValid = () => {
-   if(!enteredType || isNaN(enteredAmount) || isNaN(enteredPrice)) {
+   if(!enteredType || enteredType.length < 1 || isNaN(enteredAmount) || isNaN(enteredPrice)) {
       return false;
     }  
     return true;
@@ -43,6 +48,8 @@ function EntryForm() {
           "Content-Type": "application/json",
         },
       }); 
+      clearForm();
+      Alert.alert('SUCCESS', 'A new entry was created.')
     }catch (err) {
       Alert.alert('Something went wrong', 'No new entry added!')
     }

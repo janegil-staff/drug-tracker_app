@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
+import TimePreview from "../components/Entries/TimePreview/TimePreview";
 
 function TimerScreen() {
-  return (
-    <View style={styles.rootContainer}>
-      <Text style={styles.title}>Timer!</Text>
-    </View>
-  );
+  return <TimePreview />
 }
 
 export default TimerScreen;
