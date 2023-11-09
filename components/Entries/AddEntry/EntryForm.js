@@ -1,4 +1,4 @@
-import { View, StyleSheet} from "react-native";
+import { View, StyleSheet, Alert} from "react-native";
 import Dropdown from "./Dropdown";
 import { useState } from "react";
 import Input from "../../Auth/Input";
@@ -13,10 +13,23 @@ function EntryForm() {
     setEnteredType(data);
   };
 
+  const isValid = () => {
+   if(!enteredType || isNaN(enteredAmount) || isNaN(enteredPrice)) {
+      return false;
+    }  
+    return true;
+  }
+
   const submitHandler = () => {
+    if(!isValid()) {
+      Alert.alert('Not all values is set', 'You have to add values to all the fields!');
+      return;
+    }
+    
     console.log(enteredType);
     console.log(enteredAmount);
     console.log(enteredPrice);
+
   }
   return (
     <View>
