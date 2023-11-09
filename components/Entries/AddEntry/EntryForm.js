@@ -1,10 +1,14 @@
 import { View, StyleSheet, Alert} from "react-native";
 import Dropdown from "./Dropdown";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Input from "../../Auth/Input";
 import Button from "../../UI/Button";
+import axios from "axios";
+import { AuthContext } from "../../../store/auth-context";
+import { API_URL } from "../../../constants/http";
 
 function EntryForm() {
+  const auth = useContext(AuthContext);
   const [enteredType, setEnteredType] = useState();
   const [enteredAmount, setEnteredAmount] = useState();
   const [enteredPrice, setEnteredPrice] = useState();
@@ -20,16 +24,28 @@ function EntryForm() {
     return true;
   }
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
     if(!isValid()) {
       Alert.alert('Not all values is set', 'You have to add values to all the fields!');
       return;
     }
-    
-    console.log(enteredType);
-    console.log(enteredAmount);
-    console.log(enteredPrice);
+    let data = JSON.stringify({
+      type: enteredType,
+      amount: enteredAmount,
+      price: enteredPrice,
+    });
 
+    let url = `${API_URL}/entries`;
+    try{
+      const response = await axios.post(url, data, {
+        headers: {
+          Authorization: "Bearer " + auth.token,
+          "Content-Type": "application/json",
+        },
+      }); 
+    }catch (err) {
+      Alert.alert('Something went wrong', 'No new entry added!')
+    }
   }
   return (
     <View>

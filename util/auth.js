@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_URL } from "../constants/http";
 
 async function authenticate(mode, email, password) {
   let data = JSON.stringify({
@@ -7,7 +8,7 @@ async function authenticate(mode, email, password) {
     returnSecureToken: true,
   });
 
-  let url = `http://localhost:8080/api/users/${mode}`;
+  let url = `${API_URL}/users/${mode}`;
   const response = await axios.post(url, data, {
     headers: {
       "Content-Type": "application/json",
