@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
+import ShowEconomy from "../components/Entries/Economy/ShowEconomy";
 
 function EconomyScreen() {
-  return (
-    <View style={styles.rootContainer}>
-      <Text style={styles.title}>Ecomomy</Text>
-    </View>
-  );
+  return <ShowEconomy />
 }
 
 export default EconomyScreen;

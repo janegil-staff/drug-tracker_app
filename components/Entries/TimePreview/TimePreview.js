@@ -4,7 +4,6 @@ import axios from "axios";
 
 import { AuthContext } from "../../../store/auth-context";
 import { API_URL } from "../../../constants/http";
-import { TimeFormat } from "../../../util/time-format";
 import Timer from "./Timer";
 import { MONTHS } from "../../../constants/months";
 import { LinearGradient } from "expo-linear-gradient";
@@ -14,7 +13,7 @@ function TimePreview() {
   const auth = useContext(AuthContext);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchEntries = async () => {
       try {
         let url = `${API_URL}/entries`;
         await axios
@@ -32,7 +31,7 @@ function TimePreview() {
         console.log("An error has occured", err);
       }
     };
-    fetchUsers();
+    fetchEntries();
   }, []);
 
   let hasEntries = false;
