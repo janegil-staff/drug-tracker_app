@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import TimePreview from "../components/Entries/TimePreview/TimePreview";
 
-function TimerScreen() {
+function TimerScreen({route}) {
   return <TimePreview />
 }
 

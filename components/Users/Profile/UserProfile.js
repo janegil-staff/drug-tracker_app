@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import {  StyleSheet, Text, View } from "react-native";
 
 import ProfileImage from "./ProfileImage";
 import { useContext, useEffect } from "react";
@@ -7,11 +7,11 @@ import { AuthContext } from "../../../store/auth-context";
 import { API_URL } from "../../../constants/http";
 import axios from "axios";
 import IconButton from "../../UI/IconButton";
-import EditProfile from "./EditProfile";
+import { useNavigation } from "@react-navigation/native";
+import EditUserScreen from "../../../screens/EditUserScreen";
 
 function UserProfile() {
-  const [modalVisible, setModalVisible] = useState(false);
-
+  const navigation = useNavigation();
   const [loadedUser, setLoadedUser] = useState();
   const auth = useContext(AuthContext);
   useEffect(() => {
@@ -41,8 +41,13 @@ function UserProfile() {
     user = loadedUser;
     hasUser = true;
   }
+ 
+  const userPressHandler = () => {
 
-  const iconPresedhandler = () => {};
+    navigation.navigate('EditUserScreen', {
+      user: user,
+    });
+  }
 
   return (
     <>
@@ -59,34 +64,8 @@ function UserProfile() {
           icon="settings"
           color="black"
           size={32}
-          onPress={() => setModalVisible(!modalVisible)}
+          onPress={userPressHandler}
         />
-      </View>
-      <View style={styles.centeredView}>
-
-
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <EditProfile />
-              <Text style={styles.modalText}>Hello World!</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
       </View>
     </>
   );

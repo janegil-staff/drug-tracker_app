@@ -1,9 +1,14 @@
 
-import { Text} from 'react-native';
+import { View, Text} from 'react-native';
+import UserForm from '../components/Users/Profile/UserForm';
 
-const EditUserScreen = props => {
-  return <Text>Edit user</Text>
+const EditUserScreen = ({route}) => {
+
+  console.log(route.params);
+  return <View>
+    <Text></Text>
+    <UserForm />
+    </View>
 }
 
-// You can then use your `FadeInView` in place of a `View` in your components:
-export default EditUserScreen;
+export default EditUserScreen; 

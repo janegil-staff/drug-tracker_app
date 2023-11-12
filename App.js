@@ -24,6 +24,7 @@ const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
 function AuthStack() {
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -37,80 +38,91 @@ function AuthStack() {
     </Stack.Navigator>
   );
 }
-
-function AuthenticatedStack() {
+function EntryOverview() {
   const authCtx = useContext(AuthContext);
-  return (
-      <BottomTab.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: Colors.primary500 },
-          headerTintColor: "white",
-          contentStyle: { backgroundColor: Colors.primary100 },
-          headerRight: ({ tintColor }) => (
-            <IconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
-      >
-        <BottomTab.Screen
-          name="List"
-          component={EntryListScreen}
-          options={{
-            tabBarLabel: "List",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="list" color={color} size={size} />
-            ),
-          }}
+ return (
+  <BottomTab.Navigator
+    screenOptions={{
+      headerStyle: { backgroundColor: Colors.primary500 },
+      headerTintColor: "white",
+      contentStyle: { backgroundColor: Colors.primary100 },
+      headerRight: ({ tintColor }) => (
+        <IconButton
+          icon="exit"
+          color={tintColor}
+          size={24}
+          onPress={authCtx.logout}
         />
-        <BottomTab.Screen
-          name="Timer"
-          component={TimerScreen}
-          options={{
-            tabBarLabel: "Timer",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="timer" color={color} size={size} />
-            ),
-          }}
-        />
-        <BottomTab.Screen
-          name="AddEntry"
-          component={AddEntryScreen}
-          options={{
-            tabBarLabel: "Add Entry",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="add-circle" color={color} size={size} />
-            ),
-          }}
-        />
-        <BottomTab.Screen
-          name="Economy"
-          component={EconomyScreen}
-          options={{
-            tabBarLabel: "Economy",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="cash" color={color} size={size} />
-            ),
-          }}
-        />
+      ),
+    }}
+  >
+    <BottomTab.Screen
+      name="List"
+      component={EntryListScreen}
+      options={{
+        tabBarLabel: "List",
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="list" color={color} size={size} />
+        ),
+      }}
+    />
+    <BottomTab.Screen
+      name="Timer"
+      component={TimerScreen}
+      options={{
+        tabBarLabel: "Timer",
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="timer" color={color} size={size} />
+        ),
+      }}
+    />
+    <BottomTab.Screen
+      name="AddEntry"
+      component={AddEntryScreen}
+      options={{
+        tabBarLabel: "Add Entry",
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="add-circle" color={color} size={size} />
+        ),
+      }}
+    />
+    <BottomTab.Screen
+      name="Economy"
+      component={EconomyScreen}
+      options={{
+        tabBarLabel: "Economy",
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="cash" color={color} size={size} />
+        ),
+      }}
+    />
 
-        <BottomTab.Screen
-          name="Profile"
-          component={UserProfileScreen}
-          options={{
-            tabBarLabel: "Profile",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="person" color={color} size={size} />
-            ),
-          }}
-        />
-      </BottomTab.Navigator>
-  );
+    <BottomTab.Screen
+      name="Profile"
+      component={UserProfileScreen}
+      options={{
+        tabBarLabel: "Profile",
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="person" color={color} size={size} />
+        ),
+      }}
+    />
+  </BottomTab.Navigator>
+ )
 }
 
+function AuthenticatedStack() {
+
+  return ( 
+      <Stack.Navigator>
+        <Stack.Screen name="EntryOverview" component={EntryOverview} options={{
+          headerShown: false,
+          title:"BAck"
+        }}/>
+        <Stack.Screen name="EditUserScreen" component={EditUserScreen} />
+      </Stack.Navigator>
+  );
+}
 function Navigation() {
   const authCtx = useContext(AuthContext);
 

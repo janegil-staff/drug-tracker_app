@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 
-function EditProfile() {
-  return (<View><Text>Edit Profle</Text></View>
+function EditProfile({user}) {
+  
+  return (<View><Text>{user.name}</Text></View>
   );
 }
 
