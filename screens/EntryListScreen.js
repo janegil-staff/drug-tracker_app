@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
+import DisplayEntries from "../components/Entries/DisplayEntrires/DisplayEntries";
 
 function EntryListScreen() {
-  return (
-    <View style={styles.rootContainer}>
-      <Text style={styles.title}>New Entry</Text>
-    </View>
-  );
+  return <DisplayEntries />
 }
 
 export default EntryListScreen;

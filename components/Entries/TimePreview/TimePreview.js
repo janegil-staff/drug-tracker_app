@@ -58,8 +58,7 @@ function TimePreview() {
             <View>
               <Text style={styles.date}>
                 Last entry was {new Date(latestEntryDate).getDate()}.{" "}
-                {MONTHS[new Date(latestEntryDate).getMonth()]}
-                {new Date(latestEntryDate).getFullYear()}
+                {MONTHS[new Date(latestEntryDate).getMonth()]}{" "}{new Date(latestEntryDate).getFullYear()}
               </Text>
             </View>
           </View>

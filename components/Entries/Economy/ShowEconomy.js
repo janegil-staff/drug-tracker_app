@@ -56,7 +56,7 @@ function ShowEconomy() {
       {hasEntries &&
         totalValues.map((val) => {
           return (
-            <View style={styles.costRow}>
+            <View key={val.id} style={styles.costRow}>
               <Text style={styles.costItem}>{val.type}</Text>
               <Text style={styles.costItem}>{val.totalAmount} {(val.type === 'Benzodiasapine' || val.type == 'Extasy') ? 'stk' : 'gr' }</Text>
               <Text style={styles.costItem}>{val.totalCost}.-</Text>

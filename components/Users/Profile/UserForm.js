@@ -1,16 +1,24 @@
 import { StyleSheet, Text, View } from "react-native";
-import ProfileInput from "./Input";
+import Input from "./Input";
+function UserForm({ user }) {
 
-function UserForm({user}) {
-  
-  return (<View>
-     <Text>TODO form</Text>
-    </View>
-  );
+    
+  function nameChangedHandler() {
+
+  }
+
+  return (  
+      <View>
+        <Input
+          label="Name"
+          textInputConfig={{
+            onChangeText: nameChangedHandler,
+          }}
+        />
+      </View>
+  )
 }
 
 export default UserForm;
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});

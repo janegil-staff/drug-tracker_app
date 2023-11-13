@@ -1,14 +1,13 @@
+import { View, Text } from "react-native";
+import UserForm from "../components/Users/Profile/UserForm";
 
-import { View, Text} from 'react-native';
-import UserForm from '../components/Users/Profile/UserForm';
-
-const EditUserScreen = ({route}) => {
-
-  console.log(route.params);
-  return <View>
-    <Text></Text>
-    <UserForm />
+const EditUserScreen = ({ route }) => {
+  const { user } = route.params;
+  return (
+    <View>
+      <UserForm user={user} />
     </View>
-}
+  );
+};
 
-export default EditUserScreen; 
+export default EditUserScreen;
