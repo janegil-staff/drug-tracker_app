@@ -7,8 +7,7 @@ import EntryItem from "./EntryItem";
 import { Colors } from "../../../constants/styles";
 
 function renderEntryItem(itemData) {
-
-  return <EntryItem {...itemData.item} />
+  return <EntryItem entry={itemData.item} />
 }
 
 function DisplayEntries() {

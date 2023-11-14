@@ -19,6 +19,7 @@ import UserProfileScreen from "./screens/UserProfileScreen";
 import EntryListScreen from "./screens/EntryListScreen.js";
 import TimerScreen from "./screens/TimerScreen.js";
 import EditUserScreen from "./screens/EditUserScreen.js";
+import EditDetailsScreen from "./screens/EditDetailsScreen.js";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -136,6 +137,7 @@ function AuthenticatedStack() {
         }}
       />
       <Stack.Screen name="EditUserScreen" component={EditUserScreen} />
+      <Stack.Screen name="EditDetailsScreen" component={EditDetailsScreen} />
     </Stack.Navigator>
   );
 }

@@ -1,13 +1,22 @@
 import { Pressable, View, Text, StyleSheet } from "react-native";
 import { Colors } from "../../../constants/styles";
 import { getFormatedDate } from "../../../util/date";
+import { useNavigation } from "@react-navigation/native";
 
-function EntryItem({ type, createdAt, amount, price }) {
-  const date = getFormatedDate(new Date(createdAt));
+function EntryItem({entry}) {
+const {type, amount, price, createdAt} = entry;
+const navigation = useNavigation();
   
+  function entryPressedHandler() {
+    navigation.navigate('EditDetailsScreen', {
+     entry: entry
+    })
+  }
+
+  let date = getFormatedDate(new Date(createdAt));
   const prependValue = type === ('Benzodiasapine' || type === 'Extracy') ? 'stk' : 'gr';
   return (
-    <Pressable>
+    <Pressable style={({pressed}) => pressed && styles.pressed} onPress={entryPressedHandler}>
       <View style={styles.entryItem}>
         <View>
           <Text style={[styles.textBase, styles.description]}>{type}</Text>
@@ -25,6 +34,9 @@ function EntryItem({ type, createdAt, amount, price }) {
 export default EntryItem;
 
 const styles = StyleSheet.create({
+  pressed: {
+    opacity: 0.75
+  },
   entryItem: {
     padding: 12,
     marginVertical: 8,
